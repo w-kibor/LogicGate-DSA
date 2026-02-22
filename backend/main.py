@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
-from routes import daily_triple, submission, progress
+from backend.routes import daily_triple, submission, progress
 
 load_dotenv()
 
