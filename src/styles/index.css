@@ -1,0 +1,60 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* Custom scrollbar styling for dark mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 4px;
+  border: 1px solid #3f3f46;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Ensure dark mode is always active */
+html {
+  color-scheme: dark;
+}
+
+/* Neubrutalist sharp borders */
+.card,
+.border-2 {
+  border-radius: 8px;
+}
+
+/* Code editor styling */
+textarea[spellcheck="false"] {
+  font-feature-settings: "liga" 0;
+  letter-spacing: 0.02em;
+}
+
+/* Indigo glow effects for neubrutalist aesthetic */
+.border-indigo {
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+.border-indigo-light {
+  box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.3);
+}
+
+.bg-indigo {
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+}
+
+/* Smooth transitions for interactive elements */
+button,
+.card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
