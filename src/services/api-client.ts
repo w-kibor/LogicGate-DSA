@@ -87,19 +87,19 @@ class APIClient {
 
   // Daily Triple Endpoints
   async getDailyTriple(userId: string): Promise<DailyTriple> {
-    return this.request<DailyTriple>('GET', `/api/daily-triple/${userId}`);
+    return this.request<DailyTriple>('GET', `/daily-triple/${userId}`);
   }
 
   async getPatterns(): Promise<string[]> {
-    return this.request<string[]>('GET', '/api/patterns');
+    return this.request<string[]>('GET', '/patterns');
   }
 
   async getProblemsByPattern(pattern: string): Promise<Problem[]> {
-    return this.request<Problem[]>('GET', `/api/problems/pattern/${pattern}`);
+    return this.request<Problem[]>('GET', `/problems/pattern/${pattern}`);
   }
 
   async getProblem(problemId: string): Promise<Problem> {
-    return this.request<Problem>('GET', `/api/problems/${problemId}`);
+    return this.request<Problem>('GET', `/problems/${problemId}`);
   }
 
   // Submission Endpoints
@@ -110,7 +110,7 @@ class APIClient {
     strategy: string,
     language: string = 'python'
   ): Promise<Submission> {
-    return this.request<Submission>('POST', '/api/submit', {
+    return this.request<Submission>('POST', '/submit', {
       problem_id: problemId,
       user_id: userId,
       code,
@@ -120,7 +120,7 @@ class APIClient {
   }
 
   async getUserSubmissions(userId: string): Promise<Submission[]> {
-    return this.request<Submission[]>('GET', `/api/submissions/${userId}`);
+    return this.request<Submission[]>('GET', `/submissions/${userId}`);
   }
 
   async getProblemSubmissions(
@@ -129,23 +129,23 @@ class APIClient {
   ): Promise<Submission[]> {
     return this.request<Submission[]>(
       'GET',
-      `/api/submissions/${userId}/${problemId}`
+      `/submissions/${userId}/${problemId}`
     );
   }
 
   // Progress Endpoints
   async getUserProgress(userId: string): Promise<UserProgress> {
-    return this.request<UserProgress>('GET', `/api/progress/${userId}`);
+    return this.request<UserProgress>('GET', `/progress/${userId}`);
   }
 
   async getUserProfile(userId: string): Promise<UserProfile> {
-    return this.request<UserProfile>('GET', `/api/profile/${userId}`);
+    return this.request<UserProfile>('GET', `/profile/${userId}`);
   }
 
   async updateStreak(userId: string, days: number = 1): Promise<UserProgress> {
     return this.request<UserProgress>(
       'PATCH',
-      `/api/progress/${userId}/streak`,
+      `/progress/${userId}/streak`,
       { days }
     );
   }
@@ -153,7 +153,7 @@ class APIClient {
   async markPatternMastered(userId: string, pattern: string): Promise<unknown> {
     return this.request<unknown>(
       'POST',
-      `/api/progress/${userId}/pattern-mastered`,
+      `/progress/${userId}/pattern-mastered`,
       { pattern }
     );
   }
@@ -165,7 +165,7 @@ class APIClient {
   ): Promise<unknown> {
     return this.request<unknown>(
       'POST',
-      `/api/progress/${userId}/confidence`,
+      `/progress/${userId}/confidence`,
       { pattern, score }
     );
   }
