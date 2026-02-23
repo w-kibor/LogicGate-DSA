@@ -6,7 +6,6 @@ from backend.models import SubmissionRequest, SubmissionResponse
 from backend.supabase_config import get_supabase
 
 router = APIRouter()
-supabase = get_supabase()
 
 @router.post("/submit", response_model=SubmissionResponse)
 async def submit_solution(submission: SubmissionRequest):
@@ -16,6 +15,7 @@ async def submit_solution(submission: SubmissionRequest):
     """
     
     try:
+        supabase = get_supabase()
         submission_id = str(uuid.uuid4())
         
         # Insert into Supabase submissions table
@@ -46,6 +46,7 @@ async def submit_solution(submission: SubmissionRequest):
 async def get_user_submissions(user_id: str):
     """Get all submissions for a user"""
     try:
+        supabase = get_supabase()
         result = supabase.table("submissions").select("*").eq("user_id", user_id).execute()
         
         submissions = result.data if result.data else []
@@ -68,6 +69,7 @@ async def get_user_submissions(user_id: str):
 async def get_problem_submissions(user_id: str, problem_id: str):
     """Get all submissions for a specific problem by a user"""
     try:
+        supabase = get_supabase()
         result = supabase.table("submissions").select("*").eq("user_id", user_id).eq("problem_id", problem_id).execute()
         
         submissions = result.data if result.data else []

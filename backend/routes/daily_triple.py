@@ -7,7 +7,6 @@ from backend.data.seed_data import LEETCODE_PROBLEMS, get_pattern_problems, get_
 from backend.supabase_config import get_supabase
 
 router = APIRouter()
-supabase = get_supabase()
 
 def get_user_daily_state(user_id: str) -> dict:
     """Return a minimal daily state placeholder for now."""

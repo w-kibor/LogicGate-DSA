@@ -6,11 +6,11 @@ from backend.models import ProgressResponse, UserProfileResponse
 from backend.supabase_config import get_supabase
 
 router = APIRouter()
-supabase = get_supabase()
 
 def get_or_create_user(user_id: str):
     """Get or create user profile in Supabase"""
     try:
+        supabase = get_supabase()
         # Try to get existing user
         result = supabase.table("user_progress").select("*").eq("user_id", user_id).execute()
         
@@ -46,6 +46,7 @@ def get_or_create_user(user_id: str):
 async def get_user_progress(user_id: str):
     """Get user's progress summary"""
     try:
+        supabase = get_supabase()
         user = get_or_create_user(user_id)
         
         # Count solved problems (unique problems by user)
@@ -66,6 +67,7 @@ async def get_user_progress(user_id: str):
 async def get_user_profile(user_id: str):
     """Get detailed user profile"""
     try:
+        supabase = get_supabase()
         user = get_or_create_user(user_id)
         
         submissions = supabase.table("submissions").select("*").eq("user_id", user_id).execute()
@@ -84,6 +86,7 @@ async def get_user_profile(user_id: str):
 async def update_streak(user_id: str, days: int = 1):
     """Update user's streak"""
     try:
+        supabase = get_supabase()
         user = get_or_create_user(user_id)
         new_streak = max(user.get("current_streak", 0) + days, 0)
         
@@ -107,6 +110,7 @@ async def update_streak(user_id: str, days: int = 1):
 async def mark_pattern_mastered(user_id: str, pattern: str):
     """Mark a pattern as mastered"""
     try:
+        supabase = get_supabase()
         user = get_or_create_user(user_id)
         patterns_mastered = user.get("patterns_mastered", [])
         
@@ -128,6 +132,7 @@ async def mark_pattern_mastered(user_id: str, pattern: str):
 async def update_confidence(user_id: str, pattern: str, score: float):
     """Update confidence score for a pattern (0-100)"""
     try:
+        supabase = get_supabase()
         user = get_or_create_user(user_id)
         
         if score < 0:
