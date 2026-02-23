@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
-from models import ProgressResponse, UserProfileResponse
 from datetime import datetime
-from supabase_config import get_supabase
 import uuid
+
+from backend.models import ProgressResponse, UserProfileResponse
+from backend.supabase_config import get_supabase
 
 router = APIRouter()
 supabase = get_supabase()

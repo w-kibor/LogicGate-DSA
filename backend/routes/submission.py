@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from datetime import datetime
-from models import SubmissionRequest, SubmissionResponse
-from supabase_config import get_supabase
 import uuid
+
+from backend.models import SubmissionRequest, SubmissionResponse
+from backend.supabase_config import get_supabase
 
 router = APIRouter()
 supabase = get_supabase()

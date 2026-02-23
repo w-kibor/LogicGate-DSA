@@ -1,9 +1,10 @@
 from fastapi import APIRouter, HTTPException
 from datetime import datetime, timedelta
-from models import DailyTripleResponse, ProblemResponse, DifficultyEnum
-from data.seed_data import LEETCODE_PROBLEMS, get_pattern_problems, get_all_patterns
-from supabase_config import get_supabase
 import random
+
+from backend.models import DailyTripleResponse, ProblemResponse, DifficultyEnum
+from backend.data.seed_data import LEETCODE_PROBLEMS, get_pattern_problems, get_all_patterns
+from backend.supabase_config import get_supabase
 
 router = APIRouter()
 supabase = get_supabase()
