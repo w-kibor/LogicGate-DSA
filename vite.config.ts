@@ -4,19 +4,28 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
+  // Force Vite to recognize the root correctly for path resolution
+  root: process.cwd(), 
+  
   plugins: [
-    // The React and Tailwind plugins are both required for Make, even if
-    // Tailwind is not being actively used – do not remove them
     react(),
     tailwindcss(),
   ],
+  
+  build: {
+    // Explicitly define the output directory to avoid clashing with source folders
+    outDir: 'dist',
+    // Ensures the old dist is cleared before a new build
+    emptyOutDir: true, 
+    // Directory for static assets inside dist
+    assetsDir: 'assets', 
+  },
+
   resolve: {
     alias: {
-      // Alias @ to the src directory
       '@': path.resolve(__dirname, './src'),
     },
   },
 
-  // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
 })
