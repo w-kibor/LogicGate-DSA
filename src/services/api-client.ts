@@ -3,8 +3,8 @@
  * Handles all HTTP communication with the FastAPI backend
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-
+// ✅ Uses the Vercel variable if it exists, otherwise defaults to local
+const API_URL = import.meta.env.VITE_API_URL || ""; 
 export interface Problem {
   id: string;
   title: string;
