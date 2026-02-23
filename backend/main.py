@@ -76,7 +76,7 @@ if __name__ == "__main__":
     environment = os.getenv("ENVIRONMENT", "development")
     
     uvicorn.run(
-        "main:app",
+        "backend.main:app",
         host=host,
         port=port,
         reload=(environment == "development")

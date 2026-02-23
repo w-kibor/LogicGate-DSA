@@ -9,6 +9,13 @@ from backend.supabase_config import get_supabase
 router = APIRouter()
 supabase = get_supabase()
 
+def get_user_daily_state(user_id: str) -> dict:
+    """Return a minimal daily state placeholder for now."""
+    return {
+        "user_id": user_id,
+        "last_generated": None,
+    }
+
 def problem_to_response(problem: dict, problem_id: str) -> ProblemResponse:
     """Convert problem dict to response model"""
     return ProblemResponse(
