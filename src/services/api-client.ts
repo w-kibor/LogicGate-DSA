@@ -4,7 +4,7 @@
  */
 
 // ✅ Uses the Vercel variable if it exists, otherwise defaults to local
-const API_URL = import.meta.env.VITE_API_URL || ""; 
+const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000'; 
 export interface Problem {
   id: string;
   title: string;
@@ -53,7 +53,7 @@ export interface UserProfile {
 class APIClient {
   private baseUrl: string;
 
-  constructor(baseUrl: string = API_BASE_URL) {
+  constructor(baseUrl: string = API_URL) {
     this.baseUrl = baseUrl;
   }
 
